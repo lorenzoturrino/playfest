@@ -5,6 +5,7 @@ var multer  = require('multer');
 var upload = multer();
 
 router.post('/',upload.single('poster'), function(req,res){
+  console.log("route called, server kinda up");
   model.parseImage(req.file)
     .then(function(artistList) {
       res.status(200).send(artistList);

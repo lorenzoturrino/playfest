@@ -10,7 +10,7 @@ var initSequence = function() {
   passport.use(new SpotifyStrategy ({
     clientID: client_id,
     clientSecret: client_secret,
-    callbackURL: "http://localhost:5000/auth/callback"
+    callbackURL: "https://agile-refuge-70787.herokuapp.com/auth/callback"
   },
   function(accessTok, refreshToken, spotifyProfile, done) {
     var user = {
