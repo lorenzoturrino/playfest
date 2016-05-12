@@ -59,6 +59,7 @@ _sendFileToOcr = function(file) {
 _sendToOcrCallback = function(file,callback) {
   console.log("_sendToOcrCallback");
   var form = request.post(ocrUrl,function(err,data){
+    console.log('_sendToOcr resolve', data.body);
     callback(data.body);
   }).form();
   _buildRequest(file,form);
@@ -76,7 +77,7 @@ _buildRequest = function(file, form) {
 };
 
 _parseLines = function(inputJSON) {
-  console.log("_parseLines");
+  console.log("_parseLines", inputJSON);
 
   return JSON.parse(inputJSON)
     .ParsedResults[0].TextOverlay.Lines
