@@ -5,11 +5,13 @@ var ocrUrl = 'https://api.ocr.space/parse/image';
 var ocrKey = process.env.OCR_KEY;
 
 exports.parseImage = function(url) {
+  console.log("parseImage");
   return _parseImageFiletoWords(url)
     .then(_searchFirstTenArtistsNames);
 };
 
 _searchFirstTenArtistsNames = function(data) {
+  console.log("_searchFirstTenArtistsNames");
   return _searchForArtists(data.slice(1,10))
     .then(function(list) {
       return list.map(function(val) {
@@ -19,12 +21,14 @@ _searchFirstTenArtistsNames = function(data) {
 };
 
 _searchForArtists = function(data) {
+  console.log("_searchForArtist");
   return Promise.all(data.map(function(val){
     return _searchAPIForArtist(val.words.slice(0,3));
   }));
 };
 
 _searchAPIForArtist = function(array){
+  console.log("_searchAPIForArtist");
   if(array.length < 1){
       return null;
     }
@@ -39,17 +43,21 @@ _searchAPIForArtist = function(array){
 };
 
 _parseImageFiletoWords = function(file) {
+  console.log("_parseImageFiletoWords");
+
   return _sendFileToOcr(file)
     .then(_parseLines);
 };
 
 _sendFileToOcr = function(file) {
+  console.log("_sendFileToOcr");
   return new Promise(function(resolve,reject) {
     _sendToOcrCallback(file,resolve);
   });
 };
 
 _sendToOcrCallback = function(file,callback) {
+  console.log("_sendToOcrCallback");
   var form = request.post(ocrUrl,function(err,data){
     callback(data.body);
   }).form();
@@ -57,6 +65,8 @@ _sendToOcrCallback = function(file,callback) {
 };
 
 _buildRequest = function(file, form) {
+  console.log("_buildRequest");
+
   form.append('file', file.buffer, {
     filename: file.originalname,
     contentType: file.mimetype
@@ -66,6 +76,8 @@ _buildRequest = function(file, form) {
 };
 
 _parseLines = function(inputJSON) {
+  console.log("_parseLines");
+
   return JSON.parse(inputJSON)
     .ParsedResults[0].TextOverlay.Lines
     .map(function(entry){
@@ -83,6 +95,7 @@ _parseLines = function(inputJSON) {
 };
 
 _filterArray = function(inputArray) {
+  console.log("_filterArray");
   return inputArray
     .map(function(entry) {
       return entry.toLowerCase();
