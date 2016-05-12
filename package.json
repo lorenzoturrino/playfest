@@ -4,6 +4,7 @@
   "description": "playfest package",
   "main": "server.js",
   "scripts": {
+    "start": "npm install && node backend/server.js",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "multer": "^1.1.0",
     "passport": "^0.3.2",
     "passport-spotify": "^0.3.0",
     "request": "^2.72.0",
