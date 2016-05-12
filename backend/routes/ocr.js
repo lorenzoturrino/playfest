@@ -13,4 +13,10 @@ router.post('/',upload.single('poster'), function(req,res){
     });
 });
 
+router.post('/upload', function(req,res){
+  console.log("presentation route called, returning array");
+  var artistArray = ['coldplay','laura mvula','beck','ellie goulding','1975','james blake','chvrches','lady leshurr','cyndi lauper'];
+  res.status(200).send(artistArray);
+});
+
 module.exports = router;
