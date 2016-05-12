@@ -9,7 +9,6 @@ router.post('/',upload.single('poster'), function(req,res){
   model.parseImage(req.file)
     .then(function(artistList) {
       res.status(200).send(artistList);
-      //call playlist_creation(artistList) here.
     });
 });
 
