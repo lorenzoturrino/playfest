@@ -1,7 +1,4 @@
-.DS_Store
-npm-debug.log
-node_modules
-frontend/platforms
-frontend/plugins
-frontend/www/lib
-.env
+app/platforms
+app/plugins
+app/www/lib
+app/node_modules/
